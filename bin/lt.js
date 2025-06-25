@@ -19,8 +19,8 @@ const { argv } = yargs
     alias: 'host',
     describe: 'Upstream server providing forwarding',
     //default: 'https://localtunnel.me',
-   // default: 'http://192.168.1.3:80/',
-   default:'http://test.mytunnel',
+   default: 'http://192.168.1.8:80/',
+   //default:'https://tunnel.autosecnextgen.com',
   })
   .option('s', {
     alias: 'subdomain',
@@ -85,7 +85,7 @@ if (typeof argv.port !== 'number') {
   });
 
   console.log('your url is: %s', tunnel.url);
-
+  console.log("ap");
   /**
    * `cachedUrl` is set when using a proxy server that support resource caching.
    * This URL generally remains available after the tunnel itself has closed.
@@ -96,10 +96,12 @@ if (typeof argv.port !== 'number') {
   }
 
   if (argv.open) {
+    console.log("[Lt] : tunnel open");
     openurl.open(tunnel.url);
   }
 
   if (argv['print-requests']) {
+    console.log("[Lt] : print-request");
     tunnel.on('request', info => {
       console.log(new Date().toString(), info.method, info.path);
     });
